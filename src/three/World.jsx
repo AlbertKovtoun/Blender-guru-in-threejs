@@ -1,10 +1,9 @@
 import * as THREE from "three"
 import { useThree } from "@react-three/fiber"
 import { useGLTF, Environment } from "@react-three/drei"
+import { Dust } from "./Dust"
 
 export function World() {
-  console.log("World Loaded!")
-
   const world = useGLTF("/models/world.glb")
 
   const { gl } = useThree()
@@ -33,6 +32,8 @@ export function World() {
   return (
     <>
       <Environment background files={"/images/scene2.hdr"} />
+
+      <Dust />
 
       {/* Light0 */}
       <pointLight
