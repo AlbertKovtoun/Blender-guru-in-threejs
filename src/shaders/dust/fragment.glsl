@@ -16,11 +16,9 @@ void main()
 
 	//Fading circles
 	float alpha = 1.0 - smoothstep(0.2, 0.5, distanceToCenter);
-	alpha = alpha * 1.0 * vRandom;
+	alpha = alpha * 0.5 * vRandom;
 
-	vec3 color;
-
-	color = uColor1;
+	vec3 color = vec3(1.0);
 
     gl_FragColor = vec4(color, alpha);
     // gl_FragColor = vec4(color, 1.0);

@@ -12,10 +12,14 @@ export function Dust() {
 
   const dustPositions = new Float32Array(dustCount * 3)
 
+  const randoms = new Float32Array(dustCount)
+
   for (let i = 0; i < dustCount; i++) {
-    dustPositions[i * 3 + 0] = Math.random() * 4
-    dustPositions[i * 3 + 1] = Math.random() * 4
-    dustPositions[i * 3 + 2] = Math.random() * 4
+    dustPositions[i * 3 + 0] = (Math.random() - 0.5) * 4
+    dustPositions[i * 3 + 1] = Math.random() * 1.5
+    dustPositions[i * 3 + 2] = (Math.random() - 0.5) * 4
+
+    randoms[i] = Math.random()
   }
 
   dustGeometry.setAttribute(
@@ -23,12 +27,14 @@ export function Dust() {
     new THREE.BufferAttribute(dustPositions, 3)
   )
 
+  dustGeometry.setAttribute("aRandom", new THREE.BufferAttribute(randoms, 1))
+
   const dustMaterial = new THREE.ShaderMaterial({
     vertexShader: dustVertexShader,
     fragmentShader: dustFragmentShader,
-    // transparent: true,
-    // depthWrite: false,
-    // blending: THREE.AdditiveBlending,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
 
     uniforms: {
       uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
