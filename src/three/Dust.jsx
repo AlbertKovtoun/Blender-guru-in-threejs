@@ -6,60 +6,38 @@ import dustFragmentShader from "../shaders/dust/fragment.glsl?raw"
 export function Dust() {
   const { scene } = useThree()
 
-  const dustCount = 500
+  const dustCount = 100
 
   const dustGeometry = new THREE.BufferGeometry()
 
-  const positions = []
-  const positionVectors = []
-  const randoms = new Float32Array(dustCount)
-
-  const n = 2,
-    n2 = n / 2 // particles spread in the sphere + put sphere in center
+  const dustPositions = new Float32Array(dustCount * 3)
 
   for (let i = 0; i < dustCount; i++) {
-    // positions
-    const x = Math.random() * n - n2
-    const y = Math.random() * n - n2
-    const z = Math.random() * n - n2
-
-    positionVectors.push(new THREE.Vector3(x, y, z))
-
-    if (positionVectors[i].distanceTo(new THREE.Vector3(0, 0, 0)) < n / 2) {
-      positions.push(x, y, z)
-      randoms[i] = Math.random()
-    }
+    dustPositions[i * 3 + 0] = Math.random() * 4
+    dustPositions[i * 3 + 1] = Math.random() * 4
+    dustPositions[i * 3 + 2] = Math.random() * 4
   }
 
   dustGeometry.setAttribute(
     "position",
-    new THREE.Float32BufferAttribute(positions, 3)
+    new THREE.BufferAttribute(dustPositions, 3)
   )
-  dustGeometry.setAttribute("aRandom", new THREE.BufferAttribute(randoms, 1))
-
-  dustGeometry.computeBoundingSphere()
 
   const dustMaterial = new THREE.ShaderMaterial({
     vertexShader: dustVertexShader,
     fragmentShader: dustFragmentShader,
-    transparent: true,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
+    // transparent: true,
+    // depthWrite: false,
+    // blending: THREE.AdditiveBlending,
 
     uniforms: {
-      uTime: { value: 0 },
       uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-      uColor1: {
-        value: new THREE.Color("orange"),
-      },
-      uColor2: {
-        value: new THREE.Color("red"),
-      },
+      uTime: { value: 0 },
     },
   })
 
-  const dustPoints = new THREE.Points(dustGeometry, dustMaterial)
-  scene.add(dustPoints)
+  const dust = new THREE.Points(dustGeometry, dustMaterial)
+  scene.add(dust)
 
   useFrame((state, delta) => {
     dustMaterial.uniforms.uTime.value += delta

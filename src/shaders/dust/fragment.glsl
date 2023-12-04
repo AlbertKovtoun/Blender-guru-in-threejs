@@ -1,7 +1,6 @@
 uniform vec3 uColor1;
 uniform vec3 uColor2;
 
-varying vec2 vUv;
 varying float vRandom;
 
 void main()
@@ -11,22 +10,18 @@ void main()
     // float ll = length(xy);
     // float alpha = step(ll, 0.5);
 
-	//Fading circles
 	float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
-	float alpha = 0.05 / distanceToCenter - 0.1;
+	//Fading stars
+	// float alpha = 0.05 / distanceToCenter - 0.1;
 
-	//Random Colors
+	//Fading circles
+	float alpha = 1.0 - smoothstep(0.2, 0.5, distanceToCenter);
+	alpha = alpha * 1.0 * vRandom;
+
 	vec3 color;
 
-	if(vRandom > 0.5) 
-	{
-		color = uColor1;
-	}
-
-	else  
-	{
-		color = uColor2;
-	}
+	color = uColor1;
 
     gl_FragColor = vec4(color, alpha);
+    // gl_FragColor = vec4(color, 1.0);
 }
