@@ -10,6 +10,7 @@ export class Loaders {
 
       world.setLights()
       world.setLightsFlickering()
+      world.setDimensionFlickering()
     })
 
     this.textureLoader = new THREE.TextureLoader()

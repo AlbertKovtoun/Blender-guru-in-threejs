@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { loaders, renderer, scene } from "./Experience"
+import { getRandomNumber, loaders, renderer, scene } from "./Experience"
 
 export class World {
   constructor() {
@@ -39,7 +39,10 @@ export class World {
     this.pointLight1Intensity = 10
 
     this.pointLight0Position = this.world.getObjectByName("Light0Ref").position
-    this.pointLight1Position = this.world.getObjectByName("Light2Ref").position
+    this.pointLight1Position = this.world.getObjectByName("Light1Ref").position
+
+    this.pointLight0Mesh = this.world.getObjectByName("Light0Mesh")
+    this.pointLight1Mesh = this.world.getObjectByName("Light1Mesh")
 
     //Light0
     this.pointLight0C = new THREE.PointLight(
@@ -121,15 +124,37 @@ export class World {
   }
 
   setLightsFlickering() {
-    console.log(
-      "The lights do be flickering tho. Ain't no way copilot just did that!@#!@#"
-    )
-
-    let isLightOn = this.getRandomBoolean()
+    let isLight0On = this.getRandomBoolean()
 
     setInterval(() => {
-      isLightOn = this.getRandomBoolean()
-      console.log(isLightOn ? "Light is on" : "Light is off")
-    }, Math.random() * 2000) // Change the boolean value every 0 to 2 seconds
+      isLight0On = this.getRandomBoolean()
+
+      //Light0
+      if (isLight0On) {
+        this.pointLight0C.visible = true
+        this.pointLight0L.visible = true
+        this.pointLight0R.visible = true
+
+        this.pointLight0Mesh.material.emissiveIntensity = 10
+      } else {
+        this.pointLight0C.visible = false
+        this.pointLight0L.visible = false
+        this.pointLight0R.visible = false
+
+        this.pointLight0Mesh.material.emissiveIntensity = 0.1
+      }
+    }, getRandomNumber(0.8, 1) * 200)
+  }
+
+  setDimensionFlickering() {
+    let isDownUnder = this.getRandomBoolean()
+
+    setInterval(() => {
+      isDownUnder = this.getRandomBoolean()
+
+      if (isDownUnder) {
+      } else {
+      }
+    }, getRandomNumber(0.8, 1) * 200)
   }
 }

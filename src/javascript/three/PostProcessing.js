@@ -46,7 +46,7 @@ export class PostProcessing {
     }
 
     this.tintPass = new ShaderPass(this.TintShader)
-    // this.effectComposer.addPass(this.tintPass)
+    this.effectComposer.addPass(this.tintPass)
 
     //TV noise
     this.NoiseShader = {
