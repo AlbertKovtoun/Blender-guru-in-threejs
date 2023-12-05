@@ -10,7 +10,6 @@ import {
 
 export class World {
   constructor() {
-    this.bloodMeshes = []
     this.loadModel()
   }
 
@@ -30,10 +29,6 @@ export class World {
           child.material.envMapIntensity = 0.6
         }
 
-        if (child.isMesh && child.name.includes("blood")) {
-          this.bloodMeshes.push(child)
-        }
-
         if (child.isMesh) {
           child.receiveShadow = true
           child.castShadow = true
@@ -47,8 +42,8 @@ export class World {
   setLights() {
     this.pointLightsColor = "#C8F8FF"
 
-    this.pointLight0Intensity = 1
-    this.pointLight1Intensity = 10
+    this.pointLight0Intensity = 2
+    this.pointLight1Intensity = 20
 
     this.pointLight0Position = this.world.getObjectByName("Light0Ref").position
     this.pointLight1Position = this.world.getObjectByName("Light1Ref").position
@@ -168,18 +163,10 @@ export class World {
         postProcessing.tintPass.enabled = true
         postProcessing.noisePass.enabled = true
         dust.particlesPoints.visible = true
-
-        for (let bloodMesh of this.bloodMeshes) {
-          bloodMesh.visible = true
-        }
       } else {
         postProcessing.tintPass.enabled = false
         postProcessing.noisePass.enabled = false
         dust.particlesPoints.visible = false
-
-        for (let bloodMesh of this.bloodMeshes) {
-          bloodMesh.visible = false
-        }
       }
     }, getRandomNumber(0.8, 1) * 2000)
   }
