@@ -7,7 +7,7 @@ void main()
 	float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
 
 	//Fading circles
-	float alpha = 1.0 - smoothstep(0.2, 0.6, distanceToCenter);
+	float alpha = 1.0 - smoothstep(0.2, 0.5, distanceToCenter);
 	alpha = alpha * 0.2 * vRandom;
 
 	vec3 color = vec3(1.0);

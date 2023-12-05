@@ -10,7 +10,7 @@ export class Dust {
   }
 
   setParticles() {
-    const particleCount = 10000
+    const particleCount = 8000
 
     const geometry = new THREE.BufferGeometry()
 

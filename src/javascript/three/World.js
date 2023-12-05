@@ -1,8 +1,16 @@
 import * as THREE from "three"
-import { getRandomNumber, loaders, renderer, scene } from "./Experience"
+import {
+  dust,
+  getRandomNumber,
+  loaders,
+  postProcessing,
+  renderer,
+  scene,
+} from "./Experience"
 
 export class World {
   constructor() {
+    this.bloodMeshes = []
     this.loadModel()
   }
 
@@ -20,6 +28,10 @@ export class World {
             renderer.renderer.capabilities.getMaxAnisotropy()
 
           child.material.envMapIntensity = 0.6
+        }
+
+        if (child.isMesh && child.name.includes("blood")) {
+          this.bloodMeshes.push(child)
         }
 
         if (child.isMesh) {
@@ -153,8 +165,22 @@ export class World {
       isDownUnder = this.getRandomBoolean()
 
       if (isDownUnder) {
+        postProcessing.tintPass.enabled = true
+        postProcessing.noisePass.enabled = true
+        dust.particlesPoints.visible = true
+
+        for (let bloodMesh of this.bloodMeshes) {
+          bloodMesh.visible = true
+        }
       } else {
+        postProcessing.tintPass.enabled = false
+        postProcessing.noisePass.enabled = false
+        dust.particlesPoints.visible = false
+
+        for (let bloodMesh of this.bloodMeshes) {
+          bloodMesh.visible = false
+        }
       }
-    }, getRandomNumber(0.8, 1) * 200)
+    }, getRandomNumber(0.8, 1) * 2000)
   }
 }
