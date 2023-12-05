@@ -136,7 +136,7 @@ export class World {
   }
 
   setLightsFlickering() {
-    let isLight0On = this.getRandomBoolean()
+    let isLight0On = 1
 
     setInterval(() => {
       isLight0On = this.getRandomBoolean()
@@ -159,7 +159,7 @@ export class World {
   }
 
   setDimensionFlickering() {
-    let isDownUnder = this.getRandomBoolean()
+    let isDownUnder = 1
 
     setInterval(() => {
       isDownUnder = this.getRandomBoolean()
