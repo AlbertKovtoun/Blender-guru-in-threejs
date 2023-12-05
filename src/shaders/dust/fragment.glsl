@@ -8,7 +8,7 @@ void main()
 
 	//Fading circles
 	float alpha = 1.0 - smoothstep(0.2, 0.5, distanceToCenter);
-	alpha = alpha * 0.2 * vRandom;
+	alpha = alpha * 0.1 * vRandom;
 
 	vec3 color = vec3(1.0);
 
