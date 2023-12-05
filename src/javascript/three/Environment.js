@@ -7,7 +7,7 @@ export class Environment {
       environmentMap.mapping = THREE.EquirectangularReflectionMapping
 
       scene.environment = environmentMap
-      scene.background = environmentMap
+      // scene.background = environmentMap
     })
   }
 }

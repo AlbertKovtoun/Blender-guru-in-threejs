@@ -19,7 +19,7 @@ export class World {
   }
 
   loadModel() {
-    loaders.gltfLoader.load("/models/world.glb", (gltf) => {
+    loaders.gltfLoader.load("/models/world-opt.glb", (gltf) => {
       this.world = gltf.scene
 
       for (let child of this.world.children) {
