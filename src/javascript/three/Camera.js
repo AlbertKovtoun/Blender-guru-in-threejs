@@ -35,7 +35,6 @@ export class Camera {
   update() {
     this.camera.lookAt(0, 1, 0)
 
-    // const cameraX = this.cursor.x - 0.1
     const cameraX = this.cursor.x * 1 - 1.5
     const cameraY = -this.cursor.y * 1 + 1
 
