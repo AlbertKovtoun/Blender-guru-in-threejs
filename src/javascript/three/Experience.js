@@ -53,7 +53,8 @@ const tick = () => {
   time = currentTime
 
   // Update controls
-  camera.controls.update()
+  // camera.controls.update()
+  camera.update()
 
   dust.update(elapsedTime)
   postProcessing.noisePass.material.uniforms.uTime.value = elapsedTime

@@ -7,7 +7,7 @@ void main()
 {
     vec4 color = texture2D(tDiffuse, vUv);
 
-    color.rgb *= uTintColor;
+    color.rgb *= uTintColor + 0.2;
 
     gl_FragColor = color;
 }
