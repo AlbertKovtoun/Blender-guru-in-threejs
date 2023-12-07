@@ -38,7 +38,7 @@ void main()
     float kcube = 0.9;
     
     // float offset = .1 * sin( uTime * .5 );
-    float offset = 0.04;
+    float offset = 0.08;
     
     float red = texture2D( tDiffuse, computeUV( uv, k + offset, kcube ) ).r; 
     float green = texture2D( tDiffuse, computeUV( uv, k, kcube ) ).g; 

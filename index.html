@@ -4,14 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/images/duck.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/images/blender-guru-donut.jpg"
-    />
+    <link rel="icon" type="image/svg+xml" href="/images/donut.png" />
     <title>Blender Guru in Three.js</title>
   </head>
   <body>
+    <div class="loading-screen">
+      <div class="loading-screen-container">
+        <img src="/public/images/donut.png" alt="donut" />
+        <h1>LOADING . . .</h1>
+        <div class="loading-bar-outside">
+          <div class="loading-bar-inside"></div>
+        </div>
+      </div>
+    </div>
+
     <canvas class="webgl"></canvas>
 
     <script type="module" src="/src/script.js"></script>
