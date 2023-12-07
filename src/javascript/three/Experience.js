@@ -43,6 +43,10 @@ export const postProcessing = new PostProcessing()
 const clock = new THREE.Clock()
 let time = Date.now()
 
+console.log(
+  "If you're reading this, hey! You can find the source code here: https://github.com/AlbertKovtoun/Subway-Corridor"
+)
+
 const tick = () => {
   // stats.begin()
 

@@ -11,10 +11,15 @@ export class Loaders {
     this.loadingManager = new THREE.LoadingManager(
       () => {
         //On Loaded
-        console.log("Loading complete!")
+        // console.log("Loading complete!")
 
-        //fade out the opacity of the loading screen
+        //Fade out the opacity of the loading screen
         this.loadingScreen.style.opacity = 0
+
+        //Remove the loading screen from the DOM
+        setTimeout(() => {
+          this.loadingScreen.remove()
+        }, 2000)
 
         world.setLights()
         world.setLightsFlickering()
@@ -22,8 +27,6 @@ export class Loaders {
       },
       (itemUrl, itemsLoaded, itemsTotal) => {
         //On Progress
-        console.log(itemsLoaded / itemsTotal)
-
         let loadingProgress = itemsLoaded / itemsTotal
 
         //scale the loading bar to the loading progress from left to right

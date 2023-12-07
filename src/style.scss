@@ -29,13 +29,25 @@ $secondary-color: #ffff00;
   display: grid;
   place-items: center;
 
-  z-index: 1;
+  z-index: 2;
 
   img {
     width: 200px;
+
+    //make image bounce up and down
+    animation: bounce 0.5s infinite alternate;
   }
 
   transition: opacity 1s ease-in-out;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
 }
 
 .loading-screen-container {
@@ -64,6 +76,22 @@ $secondary-color: #ffff00;
   transition: transform 1s;
 
   background-color: white;
+}
+
+.credits {
+  position: absolute;
+
+  z-index: 1;
+
+  bottom: 1%;
+  right: 1%;
+
+  color: white;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 .webgl {
