@@ -13,6 +13,9 @@ import tintFragmentShader from "../../shaders/tint/fragment.glsl?raw"
 import noiseVertexShader from "../../shaders/noise/vertex.glsl?raw"
 import noiseFragmentShader from "../../shaders/noise/fragment.glsl?raw"
 
+import lensDistortionVertexShader from "../../shaders/lensDistortion/vertex.glsl?raw"
+import lensDistortionFragmentShader from "../../shaders/lensDistortion/fragment.glsl?raw"
+
 import vignetteVertexShader from "../../shaders/vignette/vertex.glsl?raw"
 import vignetteFragmentShader from "../../shaders/vignette/fragment.glsl?raw"
 
@@ -62,6 +65,20 @@ export class PostProcessing {
 
     this.noisePass = new ShaderPass(this.NoiseShader)
     this.effectComposer.addPass(this.noisePass)
+
+    //Lens Distortion
+    this.LensDistortionShader = {
+      vertexShader: lensDistortionVertexShader,
+      fragmentShader: lensDistortionFragmentShader,
+
+      uniforms: {
+        tDiffuse: { value: null },
+        uTime: { value: 0 },
+      },
+    }
+
+    this.lensDistortionPass = new ShaderPass(this.LensDistortionShader)
+    this.effectComposer.addPass(this.lensDistortionPass)
 
     //Vignette
     this.VignetteShader = {

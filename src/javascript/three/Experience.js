@@ -58,6 +58,7 @@ const tick = () => {
 
   dust.update(elapsedTime)
   postProcessing.noisePass.material.uniforms.uTime.value = elapsedTime
+  postProcessing.lensDistortionPass.material.uniforms.uTime.value = elapsedTime
 
   // Render
   // renderer.renderer.render(scene, camera.camera)
