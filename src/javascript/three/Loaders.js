@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
-import { sounds, world } from "./Experience"
+import { world } from "./Experience"
 
 export class Loaders {
   constructor() {
@@ -24,8 +24,6 @@ export class Loaders {
         world.setLights()
         world.setLightsFlickering()
         world.setDimensionFlickering()
-
-        sounds.setSound()
       },
       (itemUrl, itemsLoaded, itemsTotal) => {
         //On Progress

@@ -10,7 +10,6 @@ import { Dust } from "./Dust"
 import { World } from "./World"
 import { Environment } from "./Environment"
 import { PostProcessing } from "./PostProcessing"
-import { Sounds } from "./Sounds"
 
 export function getRandomNumber(min, max) {
   return Math.random() * (max - min) + min
@@ -35,8 +34,6 @@ export const dust = new Dust()
 export const sizes = new Sizes()
 
 export const camera = new Camera()
-
-export const sounds = new Sounds()
 
 export const renderer = new Renderer()
 
